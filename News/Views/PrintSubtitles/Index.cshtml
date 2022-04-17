@@ -1,0 +1,37 @@
+﻿@using News.ViewModels
+@using News.Data.Models
+@model PrintSubtitlesViewModel
+
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
+<h2>@localizer["ListSubtitles"]</h2>
+
+<p style="background:grey"><a asp-action="Create">@localizer["AddSubtitles"]</a></p>
+
+<table class="table">
+    <thead>
+        <tr><th>@localizer["Subhead"]</th><th>@localizer["Word"]</th><th>@localizer["Image"]</th><th>@localizer["Title"]</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var subtitle in Model.allSubtitles)
+        {
+            <tr>
+                <td>@subtitle.subtitle</td>
+                <td>@subtitle.text</td>
+                <td>@subtitle.picture</td>
+                @foreach (var title in Model.allNews)
+                {
+                    if (title.id == subtitle.PieceOfNewsID)
+                    {
+                        <td>@title.Title</td>
+                    }
+                }
+                <td>
+                    <a asp-action="Edit" asp-controller="PrintSubtitles" asp-route-id="@subtitle.id">@localizer["Zamena"]</a> |
+                    <a asp-action="Delete" asp-controller="PrintSubtitles" asp-route-id="@subtitle.id">@localizer["Remove"]</a>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>

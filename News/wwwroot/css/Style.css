@@ -1,0 +1,28 @@
+﻿a {
+    text-decoration: none; /* Убираем подчеркивание у ссылок */
+    color: #032850; /* Цвет ссылки */
+}
+
+    a:hover {
+        text-decoration: underline; /* Добавляем подчеркивание при наведении курсора мыши на ссылку */
+    }
+
+.pen{
+    color:blue;
+    font-size:22px;
+}
+.lastnews {
+    position:relative;
+    right:-160px;
+}
+
+p.poem {
+    white-space: pre;
+}
+.fig{
+    text-align:center;
+}
+
+body {
+
+}

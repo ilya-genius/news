@@ -1,0 +1,28 @@
+﻿@using News.ViewModels
+@using News.Data.Models
+@model PrintNewsViewModel
+
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
+<h2>@localizer["ListNews"]</h2>
+
+<p style="background:grey"><a asp-action="Create">@localizer["AddNews"]</a></p>
+
+<table class="table">
+    <thead>
+        <tr><th>@localizer["Title"]</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var news in Model.allNews)
+        {
+            <tr>
+                <td>@news.Title</td>
+                <td>
+                    <a asp-action="Edit" asp-controller="PrintNews" asp-route-id="@news.id">@localizer["Zamena"]</a> |
+                    <a asp-action="Delete" asp-controller="PrintNews" asp-route-id="@news.id">@localizer["Remove"]</a>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>

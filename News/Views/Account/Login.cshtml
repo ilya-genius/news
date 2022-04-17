@@ -1,0 +1,27 @@
+﻿@model News.ViewModels.LoginViewModel
+
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
+<head>
+    <meta charset="utf-8" />
+</head>
+
+<form asp-action="Login" asp-controller="Account" asp-anti-forgery="true">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <fieldset style="width: 650pt" align="center">
+        <legend>@localizer["Autho"]</legend>
+        <div class="form-group">
+            <label asp-for="Email">@localizer["InputEmail"]</label><br />
+            <input asp-for="Email" /><br />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div><br />
+        <div class="form-group">
+            <label asp-for="Password">@localizer["InputPassword"]</label><br />
+            <input asp-for="Password" /><br />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div> <br />
+        <div class="form-group">
+            <input type="submit" value="@localizer["Enter"]" class="btn btn-outline-dark" />
+        </div>
+    </fieldset>
+</form>

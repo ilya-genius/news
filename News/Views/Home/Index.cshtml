@@ -1,0 +1,48 @@
+﻿@using News.ViewModels
+@using News.Data.Models
+@model HomeViewModel
+
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
+
+
+<h2 class="lastnews">@localizer["LastNews"]</h2>
+<div class="row mt-4 mb-2 justify-content-center">
+    @{
+
+        List<Subtitles> pic = new List<Subtitles>();
+
+        foreach (var pictures in Model.allSubtitles)
+        {
+            pic.Add(pictures);
+        }
+
+        string img = "";
+        if (pic.Count > 0)
+        {
+            img = pic[0].picture;
+        }
+
+        @foreach (var titles in Model.lastNews)
+        {
+            <div class="col-lg-5">
+                @foreach (var p in pic)
+                {
+                    if (p.PieceOfNews.id == titles.id)
+                    {
+                        img = p.picture;
+                        break;
+                    }
+                    else
+                    {
+                        img = "";
+                    }
+                }
+                <a asp-controller="CertainNews" asp-action="Print" asp-route-id="@titles.id">
+                    <img class="img-fluid" src="@img" alt="@titles.Title" />
+                    <p class="pen">@titles.Title</p>
+                </a>
+            </div>
+        }
+    }
+</div>
